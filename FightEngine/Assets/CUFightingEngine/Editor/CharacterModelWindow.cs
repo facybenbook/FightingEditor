@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.IO;
 
-public class CharacterModelWindow : ScriptableWizard
+public partial class CharacterModelWindow : ScriptableWizard
 {
     public static CharacterModelWindow window;
 
@@ -31,10 +32,28 @@ public class CharacterModelWindow : ScriptableWizard
     //右下のボタンを押された時の判定
     private void OnWizardCreate()
     {
+        
         GameObject obj = PrefabUtility.InstantiatePrefab(modelObj) as GameObject;
-        PrefabUtility.SaveAsPrefabAsset(obj, "Assets/" + charaName + ".prefab");
+        AssetDatabase.CreateFolder("Assets/Character", charaName);
+        PrefabUtility.SaveAsPrefabAsset(obj, "Assets/Character/" + charaName +"/"+charaName+ ".prefab");
+        CreateParam();
         CharacterView.Open();
+        CreateScript();
         Close();
     }
-
+    //パラメータ(ScriptableObjectAssetの作成)
+    private CharacterProperty CreateParam()
+    {
+        AssetDatabase.CreateFolder("Assets/Character/" + charaName, "Paramater");
+        return CharacterProperty.Create("Assets/Character/" + charaName + "/Paramater/" + charaName + ".asset");
+    }
+    private void CreateScript()
+    {
+        AssetDatabase.CreateFolder("Assets/Character/" + charaName, "Script");
+        string path = "Assets/Character/" + charaName + "/Script/" + charaName + ".cs";
+        string classtemp = CodeTemp();
+        classtemp = classtemp.Replace("#CLASS_NAME#", charaName);
+        File.WriteAllText(path, classtemp);
+        AssetDatabase.Refresh();
+    }
 }
