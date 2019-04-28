@@ -13,7 +13,6 @@ public class CharacterProperty : ScriptableObject
         // ScriptableObject.CreateInstance()でインスタンスを生成
         // この時点ではアセット化はされていない
         var asset = CreateInstance<CharacterProperty>();
-
         // アセット化するにはAssetDatabase.CreateAsset()
         // 拡張子は必ず.assetとする
         AssetDatabase.CreateAsset(asset, folder);
