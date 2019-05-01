@@ -14,7 +14,6 @@ using SuperCU;
 
 public partial class CharacterModelWindow : ScriptableWizard
 {
-
     public static CharacterModelWindow window;//ウィンドウは一つ
 
     private GameObject modelObj;　//モデル（ゲームオブジェクト）
@@ -76,6 +75,8 @@ public partial class CharacterModelWindow : ScriptableWizard
 
         //オブジェクトの位置移動
         parantCharacter.transform.position = new Vector3(ConstantEditor.CHARACTER_VIEW_PLACE, 0, 0);
+
+        CharacterView.CharacterPrefab = parantCharacter;
 
         //プレハブのセーブ
         return PrefabUtility.SaveAsPrefabAsset(parantCharacter, "Assets/Character/" + charaName + "/" + charaName + ".prefab");
