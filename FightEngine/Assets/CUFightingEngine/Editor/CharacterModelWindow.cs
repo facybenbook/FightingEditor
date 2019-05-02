@@ -76,7 +76,7 @@ public partial class CharacterModelWindow : ScriptableWizard
         //オブジェクトの位置移動
         parantCharacter.transform.position = new Vector3(ConstantEditor.CHARACTER_VIEW_PLACE, 0, 0);
 
-        CharacterView.CharacterPrefab = parantCharacter;
+        CharacterView.characterPrefab = parantCharacter;
 
         //プレハブのセーブ
         return PrefabUtility.SaveAsPrefabAsset(parantCharacter, "Assets/Character/" + charaName + "/" + charaName + ".prefab");

@@ -16,9 +16,9 @@ using SuperCU;
 public partial class CharacterView : SceneView
 {
 
-    private static GameObject characterPrefab = null;
+    public static GameObject characterPrefab = null;
     //public static CharacterViewWindow inputWindow;//入力フォーム
-    public static GameObject CharacterPrefab
+    public static GameObject CharacterPrefab //シーン内削除して代入
     {
         get { return characterPrefab; }
         set
@@ -85,10 +85,13 @@ public partial class CharacterView : SceneView
         // 標準のSceneView.OnGUIを描く
         base.OnGUI();//下の記述が基底クラスのを呼び出しているだけならこれでもいけそう
         GUI.Window(55236845, _windowSize, DrawObjectFieldWindow, "キャラクタ選択");
-        
         //_internalOnGUI.Invoke(this, null);
         // レイヤーの制限を戻す
         Tools.visibleLayers = visibleLayers;
+    }
+    private void Update()
+    {
+        
     }
     private void OnLostFocus()
     {

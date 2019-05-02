@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Dummy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

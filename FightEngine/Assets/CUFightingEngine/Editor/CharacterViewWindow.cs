@@ -14,8 +14,10 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using SuperCU;
 
+[System.Serializable]
 public partial class CharacterView : SceneView
 {
+    [SerializeField]
     private static Rect _windowSize = new Rect(8, 24, 300, 100);
     private static Rect _objFieldSize = new Rect(10, 35, 280, 50);
     private static Rect _pikkerSize = new Rect(10, 10, 100, 20);
@@ -30,7 +32,8 @@ public partial class CharacterView : SceneView
         style.fontStyle = FontStyle.Bold;
         if (Event.current.type == EventType.Repaint)
         {
-            if (CharacterPrefab == null) { style.Draw(_objFieldSize, new GUIContent("  CharacterObject", EditorGUIUtility.IconContent("UnityLogo").image), idW); }
+            if (CharacterPrefab == null) { style.Draw(_objFieldSize, new GUIContent("  CharacterObject", EditorGUIUtility.IconContent("UnityLogo").image), idW);  }
+
             else if (CharacterPrefab != null) { style.Draw(_objFieldSize, new GUIContent("  " + CharacterPrefab.name, EditorGUIUtility.IconContent("PreMatCube").image), idW); }
         }
 
