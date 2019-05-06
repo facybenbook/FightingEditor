@@ -15,6 +15,15 @@ using UnityEngine;
 
 public class #CLASS_NAME# : CharacterBase
 {
+    void Start()
+    {
+        GameManager.Instance.AddUpdate(this);
+    }
+    public override void UpdateGame()
+    {
+        base.UpdateGame();
+        //ここに処理
+    }
 }
 ";
         return codeTemp;

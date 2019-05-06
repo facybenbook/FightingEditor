@@ -11,7 +11,7 @@ namespace SuperCU
     [CreateAssetMenu(menuName = "CUSystem/Create SystemProperty")]
     public class GameProperty : ScriptableObject
     {
-        public List<CharacterProperty> characterProperties = new List<CharacterProperty>();       
+        public List<CharacterProperty> characterProperties = new List<CharacterProperty>();
     }
     
 }

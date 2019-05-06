@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterBase : MonoBehaviour
+public class CharacterBase : MonoBehaviour, IEventable
 {
-    // Start is called before the first frame update
-    void Start()
+    public virtual void FixedUpdateGame()
     {
-        
     }
-
-    private void Update()
+    public virtual void LateUpdateGame()
     {
-        
+    }
+    public virtual void UpdateGame()
+    {
     }
 }

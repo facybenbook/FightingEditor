@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using System.IO;
+using UnityEditor.Callbacks;
+using System;
 using SuperCU;
 
 public partial class CharacterModelWindow : ScriptableWizard
@@ -17,7 +19,7 @@ public partial class CharacterModelWindow : ScriptableWizard
     public static CharacterModelWindow window;//ウィンドウは一つ
 
     private GameObject modelObj;　//モデル（ゲームオブジェクト）
-    private string charaName;     //名前(半角英数)
+    private string charaName; //名前(半角英数)
     private string charaNameJp;   //名前(日本語)
 
     //ウィンドウ表示
@@ -39,20 +41,20 @@ public partial class CharacterModelWindow : ScriptableWizard
         modelObj = EditorGUILayout.ObjectField("キャラクターモデル",modelObj,typeof(GameObject),false)as GameObject;
         charaName = EditorGUILayout.TextField("キャラ名(半角英字)",  charaName);
         charaNameJp = EditorGUILayout.TextField("キャラ名(全角ＯＫ)", charaNameJp);
-
         return true;
     }
     //右下のボタンを押された時の判定
     private void OnWizardCreate()
     {　
         AssetDatabase.CreateFolder("Assets/Character", charaName);//フォルダの作成
+        CreateScript();//スクリプトテンプレートの作成
+        CharacterView.charaName = charaName;
         CharacterView.Open();//CharacterView
         Scene scene = EditorSceneManager.OpenScene(ConstantEditor.CHARACTER_VIEW_SCENE_PATH, OpenSceneMode.Additive);//CharacterView用のシーンをロード
-        CreatePrefab(scene);//プレハブ、オブジェクト作成
+        modelObj = CreatePrefab(scene);//プレハブ、オブジェクト作成
         CreateParam();//パラメータ作成
         SceneManager.SetActiveScene(scene);//アクティブシーンの変更
-        CreateScript();//スクリプトテンプレートの作成
-        Close();//閉じる
+        Close();
     }
     //プレハブ作成
     private GameObject CreatePrefab(Scene scene)
@@ -64,7 +66,7 @@ public partial class CharacterModelWindow : ScriptableWizard
         obj.transform.parent = parantCharacter.transform;
         obj.transform.localPosition = Vector3.zero;
         parantCharacter.name = charaName;
-
+        parantCharacter.AddComponent ( Type.GetType(charaName) );
         //子オブジェのレイヤーを変更
         List<Transform> children = SuperCU.SubTransform.ChildClass(parantCharacter.transform);//子オブジェを全て読みこみ
         foreach (Transform child in children)
@@ -93,6 +95,7 @@ public partial class CharacterModelWindow : ScriptableWizard
         AssetDatabase.CreateFolder("Assets/Character/" + charaName, "Script");
         string path = "Assets/Character/" + charaName + "/Script/" + charaName + ".cs";
         string classtemp = CodeTemp();
+        //テンプレート内の特定文字列の変換
         classtemp = classtemp.Replace("#CLASS_NAME#", charaName);
         File.WriteAllText(path, classtemp);
         AssetDatabase.Refresh();

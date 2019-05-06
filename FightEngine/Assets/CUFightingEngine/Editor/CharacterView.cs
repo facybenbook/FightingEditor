@@ -15,7 +15,7 @@ using SuperCU;
 
 public partial class CharacterView : SceneView
 {
-
+    public static string charaName = null;
     public static GameObject characterPrefab = null;
     //public static CharacterViewWindow inputWindow;//入力フォーム
     public static GameObject CharacterPrefab //シーン内削除して代入
@@ -55,7 +55,7 @@ public partial class CharacterView : SceneView
 
     //ウィンドウオープン
     [MenuItem("スーパーCU格ゲーエン人17号/キャラクタービュー")]
-    public static void Open()
+    public static CharacterView Open()
     {
         var window = ScriptableObject.CreateInstance<CharacterView>();
         window.Show();
@@ -65,6 +65,7 @@ public partial class CharacterView : SceneView
         //ほぼメインカメラ位置に移動
         window.LookAt(new Vector3(Camera.main.transform.position.x + ConstantEditor.CHARACTER_VIEW_PLACE, Camera.main.transform.position.y, Camera.main.transform.position.z), window.rotation, 1);
         window.name = "CharacterView";
+        return window;
     }
     MethodInfo _internalOnGUI;
     public override void OnEnable()

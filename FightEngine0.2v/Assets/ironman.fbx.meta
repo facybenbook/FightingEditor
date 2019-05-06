@@ -1,0 +1,680 @@
+fileFormatVersion: 2
+guid: 215374f03afee404cbfd05e0c6fd0733
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bip001
+    100002: Bip001 Head
+    100004: Bip001 L Calf
+    100006: Bip001 L Clavicle
+    100008: Bip001 L Finger0
+    100010: Bip001 L Finger01
+    100012: Bip001 L Finger1
+    100014: Bip001 L Finger11
+    100016: Bip001 L Finger2
+    100018: Bip001 L Finger21
+    100020: Bip001 L Finger3
+    100022: Bip001 L Finger31
+    100024: Bip001 L Finger4
+    100026: Bip001 L Finger41
+    100028: Bip001 L Foot
+    100030: Bip001 L Forearm
+    100032: Bip001 L Hand
+    100034: Bip001 L Thigh
+    100036: Bip001 L Toe0
+    100038: Bip001 L UpperArm
+    100040: Bip001 Neck
+    100042: Bip001 Pelvis
+    100044: Bip001 R Calf
+    100046: Bip001 R Clavicle
+    100048: Bip001 R Finger0
+    100050: Bip001 R Finger01
+    100052: Bip001 R Finger1
+    100054: Bip001 R Finger11
+    100056: Bip001 R Finger2
+    100058: Bip001 R Finger21
+    100060: Bip001 R Finger3
+    100062: Bip001 R Finger31
+    100064: Bip001 R Finger4
+    100066: Bip001 R Finger41
+    100068: Bip001 R Foot
+    100070: Bip001 R Forearm
+    100072: Bip001 R Hand
+    100074: Bip001 R Thigh
+    100076: Bip001 R Toe0
+    100078: Bip001 R UpperArm
+    100080: Bip001 Spine
+    100082: Bip001 Spine1
+    100084: Bone001
+    100086: Bone004
+    100088: Bone007
+    100090: Bone010
+    100092: Bone_Bip001 L Hand_effect
+    100094: Bone_Bip001 R Hand_effect
+    100096: Bone_Bip001 Spine1_effect
+    100098: Bone_PT_ROOT001_effect
+    100100: Bone_PT_ROOT002_effect
+    100102: Bone_PT_ROOT003_effect
+    100104: Bone_wp02
+    100106: Bone_wp02(mirrored)
+    100108: Bone_wp04
+    100110: Bone_wp04_01
+    100112: Bone_wp04_01(mirrored)
+    100114: Bone_wp04_02
+    100116: Bone_wp04_02(mirrored)
+    100118: Bone_wp04_03
+    100120: Bone_wp04_03(mirrored)
+    100122: Bone_wp04_04
+    100124: Bone_wp04_04(mirrored)
+    100126: Bone_wp04_04_L_effect001
+    100128: Bone_wp04_04_L_effect002
+    100130: Bone_wp04_04_L_effect003
+    100132: Bone_wp04_04_R_effect001
+    100134: Bone_wp04_04_R_effect002
+    100136: Bone_wp04_04_R_effect003
+    100138: Bone_wp05_01
+    100140: Bone_wp06
+    100142: Bone_wp06_02
+    100144: Bone_wp06_03
+    100146: Bone_wp06_04
+    100148: Bone_wp06_05
+    100150: Camera
+    100152: Camera001
+    100154: eye_eff
+    100156: flare 13
+    100158: flare 13 1
+    100160: flare 13 2
+    100162: flare 13 3
+    100164: flare 24_ring
+    100166: flare 24_ring 1
+    100168: flare 24_ring 10
+    100170: flare 24_ring 11
+    100172: flare 24_ring 12
+    100174: flare 24_ring 13
+    100176: flare 24_ring 14
+    100178: flare 24_ring 15
+    100180: flare 24_ring 16
+    100182: flare 24_ring 17
+    100184: flare 24_ring 18
+    100186: flare 24_ring 19
+    100188: flare 24_ring 2
+    100190: flare 24_ring 20
+    100192: flare 24_ring 21
+    100194: flare 24_ring 22
+    100196: flare 24_ring 23
+    100198: flare 24_ring 24
+    100200: flare 24_ring 25
+    100202: flare 24_ring 26
+    100204: flare 24_ring 27
+    100206: flare 24_ring 28
+    100208: flare 24_ring 29
+    100210: flare 24_ring 3
+    100212: flare 24_ring 4
+    100214: flare 24_ring 5
+    100216: flare 24_ring 6
+    100218: flare 24_ring 7
+    100220: flare 24_ring 8
+    100222: flare 24_ring 9
+    100224: flare 26
+    100226: flare 26 1
+    100228: flare 26 2
+    100230: flare 26 3
+    100232: flare 26 4
+    100234: flare 26 5
+    100236: flare 26 6
+    100238: hero_ironman01_S04 1
+    100240: hero_ironman01_S04_wp005
+    100242: hero_ironman01_S04_wp006
+    100244: hero_ironman01_S04_wp007
+    100246: hero_ironman01_S04_wp2
+    100248: hero_ironman01_S04_wp4
+    100250: hero_ironman01_S04_wp5
+    100252: hero_ironman01_So4_wp6
+    100254: iron_eff_test
+    100256: iron_eff_test 1
+    100258: iron_eff_test 2
+    100260: iron_eff_test 3
+    100262: iron_eff_test 4
+    100264: iron_eff_test 5
+    100266: iron_s04_skill01_handsword
+    100268: iron_s04_skill01_handsword 1
+    100270: iron_s04_skill01_handsword 2
+    100272: iron_s04_skill01_handsword 3
+    100274: iron_s04_skill01_handsword 4
+    100276: iron_s04_skill01_handsword 5
+    100278: iron_s04_skill01_handsword 6
+    100280: iron_s04_skill01_handsword 7
+    100282: iron_s04_skill01_handsword 8
+    100284: iron_s04_skill01_handsword 9
+    100286: //RootNode
+    100288: ironman_chest
+    100290: ironman_chest 1
+    100292: ironman_chest 2
+    100294: ironman_chest 3
+    100296: ironman_chest 4
+    100298: ironman_chest 5
+    100300: ironman_chest_03
+    100302: ironman_chest_03 1
+    100304: ironman_chest_03 10
+    100306: ironman_chest_03 11
+    100308: ironman_chest_03 12
+    100310: ironman_chest_03 13
+    100312: ironman_chest_03 14
+    100314: ironman_chest_03 15
+    100316: ironman_chest_03 2
+    100318: ironman_chest_03 3
+    100320: ironman_chest_03 4
+    100322: ironman_chest_03 5
+    100324: ironman_chest_03 6
+    100326: ironman_chest_03 7
+    100328: ironman_chest_03 8
+    100330: ironman_chest_03 9
+    100332: ironman_chest_k
+    100334: ironman_chest_k 1
+    100336: ironman_chest_k 2
+    100338: ironman_s04_booster_01
+    100340: ironman_s04_booster_01 1
+    100342: ironman_s04_booster_01 2
+    100344: ironman_s04_booster_01 3
+    100346: light
+    100348: light 1
+    100350: light 2
+    100352: mini_light_l
+    100354: mini_light_r
+    100356: mob_nun_skill01_gunfire01
+    100358: mob_nun_skill01_gunfire01 1
+    100360: plane_2
+    100362: plane_2 1
+    100364: PT_ROOT001
+    100366: PT_ROOT002
+    100368: PT_ROOT003
+    100370: PT_ROOT_Link
+    100372: sword
+    100374: sword 1
+    100376: sword 10
+    100378: sword 11
+    100380: sword 12
+    100382: sword 13
+    100384: sword 14
+    100386: sword 15
+    100388: sword 16
+    100390: sword 17
+    100392: sword 18
+    100394: sword 19
+    100396: sword 2
+    100398: sword 20
+    100400: sword 21
+    100402: sword 22
+    100404: sword 23
+    100406: sword 3
+    100408: sword 4
+    100410: sword 5
+    100412: sword 6
+    100414: sword 7
+    100416: sword 8
+    100418: sword 9
+    100420: virtical
+    100422: virtical 1
+    100424: warwolf_eye
+    100426: warwolf_eye 1
+    100428: wp04_01_ L_effect001
+    100430: wp04_01_ R_effect001
+    400000: Bip001
+    400002: Bip001 Head
+    400004: Bip001 L Calf
+    400006: Bip001 L Clavicle
+    400008: Bip001 L Finger0
+    400010: Bip001 L Finger01
+    400012: Bip001 L Finger1
+    400014: Bip001 L Finger11
+    400016: Bip001 L Finger2
+    400018: Bip001 L Finger21
+    400020: Bip001 L Finger3
+    400022: Bip001 L Finger31
+    400024: Bip001 L Finger4
+    400026: Bip001 L Finger41
+    400028: Bip001 L Foot
+    400030: Bip001 L Forearm
+    400032: Bip001 L Hand
+    400034: Bip001 L Thigh
+    400036: Bip001 L Toe0
+    400038: Bip001 L UpperArm
+    400040: Bip001 Neck
+    400042: Bip001 Pelvis
+    400044: Bip001 R Calf
+    400046: Bip001 R Clavicle
+    400048: Bip001 R Finger0
+    400050: Bip001 R Finger01
+    400052: Bip001 R Finger1
+    400054: Bip001 R Finger11
+    400056: Bip001 R Finger2
+    400058: Bip001 R Finger21
+    400060: Bip001 R Finger3
+    400062: Bip001 R Finger31
+    400064: Bip001 R Finger4
+    400066: Bip001 R Finger41
+    400068: Bip001 R Foot
+    400070: Bip001 R Forearm
+    400072: Bip001 R Hand
+    400074: Bip001 R Thigh
+    400076: Bip001 R Toe0
+    400078: Bip001 R UpperArm
+    400080: Bip001 Spine
+    400082: Bip001 Spine1
+    400084: Bone001
+    400086: Bone004
+    400088: Bone007
+    400090: Bone010
+    400092: Bone_Bip001 L Hand_effect
+    400094: Bone_Bip001 R Hand_effect
+    400096: Bone_Bip001 Spine1_effect
+    400098: Bone_PT_ROOT001_effect
+    400100: Bone_PT_ROOT002_effect
+    400102: Bone_PT_ROOT003_effect
+    400104: Bone_wp02
+    400106: Bone_wp02(mirrored)
+    400108: Bone_wp04
+    400110: Bone_wp04_01
+    400112: Bone_wp04_01(mirrored)
+    400114: Bone_wp04_02
+    400116: Bone_wp04_02(mirrored)
+    400118: Bone_wp04_03
+    400120: Bone_wp04_03(mirrored)
+    400122: Bone_wp04_04
+    400124: Bone_wp04_04(mirrored)
+    400126: Bone_wp04_04_L_effect001
+    400128: Bone_wp04_04_L_effect002
+    400130: Bone_wp04_04_L_effect003
+    400132: Bone_wp04_04_R_effect001
+    400134: Bone_wp04_04_R_effect002
+    400136: Bone_wp04_04_R_effect003
+    400138: Bone_wp05_01
+    400140: Bone_wp06
+    400142: Bone_wp06_02
+    400144: Bone_wp06_03
+    400146: Bone_wp06_04
+    400148: Bone_wp06_05
+    400150: Camera
+    400152: Camera001
+    400154: eye_eff
+    400156: flare 13
+    400158: flare 13 1
+    400160: flare 13 2
+    400162: flare 13 3
+    400164: flare 24_ring
+    400166: flare 24_ring 1
+    400168: flare 24_ring 10
+    400170: flare 24_ring 11
+    400172: flare 24_ring 12
+    400174: flare 24_ring 13
+    400176: flare 24_ring 14
+    400178: flare 24_ring 15
+    400180: flare 24_ring 16
+    400182: flare 24_ring 17
+    400184: flare 24_ring 18
+    400186: flare 24_ring 19
+    400188: flare 24_ring 2
+    400190: flare 24_ring 20
+    400192: flare 24_ring 21
+    400194: flare 24_ring 22
+    400196: flare 24_ring 23
+    400198: flare 24_ring 24
+    400200: flare 24_ring 25
+    400202: flare 24_ring 26
+    400204: flare 24_ring 27
+    400206: flare 24_ring 28
+    400208: flare 24_ring 29
+    400210: flare 24_ring 3
+    400212: flare 24_ring 4
+    400214: flare 24_ring 5
+    400216: flare 24_ring 6
+    400218: flare 24_ring 7
+    400220: flare 24_ring 8
+    400222: flare 24_ring 9
+    400224: flare 26
+    400226: flare 26 1
+    400228: flare 26 2
+    400230: flare 26 3
+    400232: flare 26 4
+    400234: flare 26 5
+    400236: flare 26 6
+    400238: hero_ironman01_S04 1
+    400240: hero_ironman01_S04_wp005
+    400242: hero_ironman01_S04_wp006
+    400244: hero_ironman01_S04_wp007
+    400246: hero_ironman01_S04_wp2
+    400248: hero_ironman01_S04_wp4
+    400250: hero_ironman01_S04_wp5
+    400252: hero_ironman01_So4_wp6
+    400254: iron_eff_test
+    400256: iron_eff_test 1
+    400258: iron_eff_test 2
+    400260: iron_eff_test 3
+    400262: iron_eff_test 4
+    400264: iron_eff_test 5
+    400266: iron_s04_skill01_handsword
+    400268: iron_s04_skill01_handsword 1
+    400270: iron_s04_skill01_handsword 2
+    400272: iron_s04_skill01_handsword 3
+    400274: iron_s04_skill01_handsword 4
+    400276: iron_s04_skill01_handsword 5
+    400278: iron_s04_skill01_handsword 6
+    400280: iron_s04_skill01_handsword 7
+    400282: iron_s04_skill01_handsword 8
+    400284: iron_s04_skill01_handsword 9
+    400286: //RootNode
+    400288: ironman_chest
+    400290: ironman_chest 1
+    400292: ironman_chest 2
+    400294: ironman_chest 3
+    400296: ironman_chest 4
+    400298: ironman_chest 5
+    400300: ironman_chest_03
+    400302: ironman_chest_03 1
+    400304: ironman_chest_03 10
+    400306: ironman_chest_03 11
+    400308: ironman_chest_03 12
+    400310: ironman_chest_03 13
+    400312: ironman_chest_03 14
+    400314: ironman_chest_03 15
+    400316: ironman_chest_03 2
+    400318: ironman_chest_03 3
+    400320: ironman_chest_03 4
+    400322: ironman_chest_03 5
+    400324: ironman_chest_03 6
+    400326: ironman_chest_03 7
+    400328: ironman_chest_03 8
+    400330: ironman_chest_03 9
+    400332: ironman_chest_k
+    400334: ironman_chest_k 1
+    400336: ironman_chest_k 2
+    400338: ironman_s04_booster_01
+    400340: ironman_s04_booster_01 1
+    400342: ironman_s04_booster_01 2
+    400344: ironman_s04_booster_01 3
+    400346: light
+    400348: light 1
+    400350: light 2
+    400352: mini_light_l
+    400354: mini_light_r
+    400356: mob_nun_skill01_gunfire01
+    400358: mob_nun_skill01_gunfire01 1
+    400360: plane_2
+    400362: plane_2 1
+    400364: PT_ROOT001
+    400366: PT_ROOT002
+    400368: PT_ROOT003
+    400370: PT_ROOT_Link
+    400372: sword
+    400374: sword 1
+    400376: sword 10
+    400378: sword 11
+    400380: sword 12
+    400382: sword 13
+    400384: sword 14
+    400386: sword 15
+    400388: sword 16
+    400390: sword 17
+    400392: sword 18
+    400394: sword 19
+    400396: sword 2
+    400398: sword 20
+    400400: sword 21
+    400402: sword 22
+    400404: sword 23
+    400406: sword 3
+    400408: sword 4
+    400410: sword 5
+    400412: sword 6
+    400414: sword 7
+    400416: sword 8
+    400418: sword 9
+    400420: virtical
+    400422: virtical 1
+    400424: warwolf_eye
+    400426: warwolf_eye 1
+    400428: wp04_01_ L_effect001
+    400430: wp04_01_ R_effect001
+    2100000: No Name
+    2300000: flare 13
+    2300002: flare 13 1
+    2300004: flare 13 2
+    2300006: flare 13 3
+    2300008: flare 24_ring
+    2300010: flare 24_ring 1
+    2300012: flare 24_ring 10
+    2300014: flare 24_ring 11
+    2300016: flare 24_ring 12
+    2300018: flare 24_ring 13
+    2300020: flare 24_ring 14
+    2300022: flare 24_ring 15
+    2300024: flare 24_ring 16
+    2300026: flare 24_ring 17
+    2300028: flare 24_ring 18
+    2300030: flare 24_ring 19
+    2300032: flare 24_ring 2
+    2300034: flare 24_ring 20
+    2300036: flare 24_ring 21
+    2300038: flare 24_ring 22
+    2300040: flare 24_ring 23
+    2300042: flare 24_ring 24
+    2300044: flare 24_ring 25
+    2300046: flare 24_ring 26
+    2300048: flare 24_ring 27
+    2300050: flare 24_ring 28
+    2300052: flare 24_ring 29
+    2300054: flare 24_ring 3
+    2300056: flare 24_ring 4
+    2300058: flare 24_ring 5
+    2300060: flare 24_ring 6
+    2300062: flare 24_ring 7
+    2300064: flare 24_ring 8
+    2300066: flare 24_ring 9
+    2300068: flare 26 2
+    2300070: flare 26 4
+    2300072: light
+    2300074: light 1
+    2300076: light 2
+    2300078: plane_2
+    2300080: plane_2 1
+    2300082: sword
+    2300084: sword 1
+    2300086: sword 10
+    2300088: sword 11
+    2300090: sword 12
+    2300092: sword 13
+    2300094: sword 14
+    2300096: sword 15
+    2300098: sword 16
+    2300100: sword 17
+    2300102: sword 18
+    2300104: sword 19
+    2300106: sword 2
+    2300108: sword 20
+    2300110: sword 21
+    2300112: sword 22
+    2300114: sword 23
+    2300116: sword 3
+    2300118: sword 4
+    2300120: sword 5
+    2300122: sword 6
+    2300124: sword 7
+    2300126: sword 8
+    2300128: sword 9
+    2300130: virtical
+    2300132: virtical 1
+    3300000: flare 13
+    3300002: flare 13 1
+    3300004: flare 13 2
+    3300006: flare 13 3
+    3300008: flare 24_ring
+    3300010: flare 24_ring 1
+    3300012: flare 24_ring 10
+    3300014: flare 24_ring 11
+    3300016: flare 24_ring 12
+    3300018: flare 24_ring 13
+    3300020: flare 24_ring 14
+    3300022: flare 24_ring 15
+    3300024: flare 24_ring 16
+    3300026: flare 24_ring 17
+    3300028: flare 24_ring 18
+    3300030: flare 24_ring 19
+    3300032: flare 24_ring 2
+    3300034: flare 24_ring 20
+    3300036: flare 24_ring 21
+    3300038: flare 24_ring 22
+    3300040: flare 24_ring 23
+    3300042: flare 24_ring 24
+    3300044: flare 24_ring 25
+    3300046: flare 24_ring 26
+    3300048: flare 24_ring 27
+    3300050: flare 24_ring 28
+    3300052: flare 24_ring 29
+    3300054: flare 24_ring 3
+    3300056: flare 24_ring 4
+    3300058: flare 24_ring 5
+    3300060: flare 24_ring 6
+    3300062: flare 24_ring 7
+    3300064: flare 24_ring 8
+    3300066: flare 24_ring 9
+    3300068: flare 26 2
+    3300070: flare 26 4
+    3300072: light
+    3300074: light 1
+    3300076: light 2
+    3300078: plane_2
+    3300080: plane_2 1
+    3300082: sword
+    3300084: sword 1
+    3300086: sword 10
+    3300088: sword 11
+    3300090: sword 12
+    3300092: sword 13
+    3300094: sword 14
+    3300096: sword 15
+    3300098: sword 16
+    3300100: sword 17
+    3300102: sword 18
+    3300104: sword 19
+    3300106: sword 2
+    3300108: sword 20
+    3300110: sword 21
+    3300112: sword 22
+    3300114: sword 23
+    3300116: sword 3
+    3300118: sword 4
+    3300120: sword 5
+    3300122: sword 6
+    3300124: sword 7
+    3300126: sword 8
+    3300128: sword 9
+    3300130: virtical
+    3300132: virtical 1
+    4300000: hero_ironman01_So4_wp6
+    4300002: hero_ironman01_S04_wp007
+    4300004: hero_ironman01_S04_wp006
+    4300006: hero_ironman01_S04_wp5
+    4300008: hero_ironman01_S04_wp005
+    4300010: hero_ironman01_S04_wp4
+    4300012: hero_ironman01_S04_wp2
+    4300014: hero_ironman01_S04
+    4300016: flare 24_ring
+    4300018: sword
+    4300020: sword
+    4300022: virtical
+    9500000: //RootNode
+    13700000: hero_ironman01_S04 1
+    13700002: hero_ironman01_S04_wp005
+    13700004: hero_ironman01_S04_wp006
+    13700006: hero_ironman01_S04_wp007
+    13700008: hero_ironman01_S04_wp2
+    13700010: hero_ironman01_S04_wp4
+    13700012: hero_ironman01_S04_wp5
+    13700014: hero_ironman01_So4_wp6
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0254
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
