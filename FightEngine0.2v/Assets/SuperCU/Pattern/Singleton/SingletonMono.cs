@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace SuperCU.Generic
+namespace SuperCU.Pattern
 {
     public abstract class SingletonMono<T> : MonoBehaviour where T : MonoBehaviour
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SuperCU.FightingEngine;
 using SuperCU.Generic;
+using SuperCU.Pattern;
 
 public class GameManager : SingletonMono<GameManager>
 {
