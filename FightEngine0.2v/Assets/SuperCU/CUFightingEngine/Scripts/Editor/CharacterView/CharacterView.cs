@@ -20,7 +20,7 @@ namespace SuperCU.FightingEngine
     {
         public static string charaName = null;
         public static GameObject characterPrefab = null;
-        //public static CharacterViewWindow inputWindow;//入力フォーム
+        //public static CharacterViewWindow inputWindow;//TODO:入力フォーム
         public static GameObject CharacterPrefab //シーン内削除して代入
         {
             get { return characterPrefab; }
@@ -78,24 +78,19 @@ namespace SuperCU.FightingEngine
             var type = typeof(CharacterView);
             _internalOnGUI = type.BaseType.GetMethod("OnGUI", BindingFlags.Instance | BindingFlags.NonPublic);
         }
-        //レイヤー制限
         protected override void OnGUI()
         {
-
+            //レイヤー制限
             int layerMask = 1 << LayerMask.NameToLayer("Character");
             int visibleLayers = Tools.visibleLayers;
             // SceneViewに映るレイヤーを制限してから
             Tools.visibleLayers = layerMask;
             // 標準のSceneView.OnGUIを描く
             base.OnGUI();//下の記述が基底クラスのを呼び出しているだけならこれでもいけそう
-            GUI.Window(55236845, _windowSize, DrawObjectFieldWindow, "キャラクタ選択");
+            GUI.Window(55236845, _windowSize, DrawObjectFieldWindow, "キャラクタ選択");//使っていないID取得してもたまにエラー起きるのでここだけマジックナンバー、適当
             //_internalOnGUI.Invoke(this, null);
             // レイヤーの制限を戻す
             Tools.visibleLayers = visibleLayers;
-        }
-        private void Update()
-        {
-
         }
         private void OnLostFocus()
         {

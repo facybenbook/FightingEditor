@@ -20,9 +20,9 @@ public class StateNodeEditor : EditorWindow
     protected virtual void OnGUI()
     {
         o = EditorGUILayout.ObjectField(o, typeof(GameObject), true) as GameObject;
-        if (this.root == null && o != null)
+        if (root == null && o != null)
         {
-            this.Init();
+            Init();
         }
         if(o == null)
         {
@@ -49,7 +49,7 @@ public class StateNodeEditor : EditorWindow
         }
         EndWindows();
     }
-    //ノード入れ（最適化できてません）
+    //ノード初期化　TODO:最適化
     private void Init()
     {
         state = o.GetComponent<TestState>();
@@ -57,10 +57,11 @@ public class StateNodeEditor : EditorWindow
         foreach (StateString ss in state.states)
         {
             nodeDictionary.Add(ss.getStateName(), new Node(ss.getStateName(), new Vector2(200, 200),id));
-            id++;
-            ss.stateJudges.Sort((a, b) => b.priority - a.priority);//優先度順にソート(高ければ高い、降順),いらない
+            id++;//ウィンドウID
         }
         root = nodeDictionary[state.states[0].getStateName()];//基底ノード
+
+        //ステートを見て関係を格納
         foreach (StateJudge judge in state.states[0].stateJudges)
         {
             if (nodeDictionary[judge.nextState] != null)
@@ -83,7 +84,7 @@ public class StateNodeEditor : EditorWindow
             }
         }
     }
-
+    //ベースとなるノードクラス
     public class Node
     {
         public int id;
@@ -91,39 +92,37 @@ public class StateNodeEditor : EditorWindow
         public Rect window;
         public List<Node> childs = new List<Node>();
         public Color color = Color.white;
-
+        //初期化
         public Node(string na, Vector2 position,int d)
         {
             id = d;
             name = na;
-            this.window = new Rect(position, new Vector2(100, 50));
+            window = new Rect(position, new Vector2(100, 50));
         }
-
+        //描画
         public void Draw()
         {
+            //色変え
             GUI.backgroundColor = color;
 
-            this.window = GUI.Window(this.id, this.window, DrawNodeWindow, "Window" + this.id);
-            foreach (var child in this.childs)
+            window = GUI.Window(id, window, DrawNodeWindow, "Window" + id);
+            foreach (var child in childs)
             {
                 DrawNodeLine(this.window, child.window); 
             }
         }
-
+        //GUIウィンドウ用関数
         void DrawNodeWindow(int id)
         {
             GUI.DragWindow();
             GUI.Label(new Rect(30, 22, 100, 100), name, EditorStyles.label);
         }
-        static Vector2 a = new Vector2();
-
         static void DrawNodeLine(Rect start, Rect end)
         {
             Vector3 startPos = new Vector3(start.x + start.width / 2, start.y + start.height / 2, 0);
             Vector3 endPos = new Vector3(end.x + end.width / 2, end.y + end.height / 2, 0);
             Vector3 harhPos = (startPos + endPos) / 2;
             Vector3 direction = (endPos - startPos).normalized;
-            Vector2.SmoothDamp(harhPos, endPos,ref a,10);
             //色は適当
             Handles.color = Color.white;
             Handles.DrawLine(startPos, endPos);
@@ -133,20 +132,6 @@ public class StateNodeEditor : EditorWindow
                 harhPos +( new Vector3(-direction.y, direction.x, 0).normalized * 6) + new Vector3(0, 0, -5),
                 harhPos + (new Vector3(-direction.y, direction.x, 0).normalized * -6) + new Vector3(0, 0, -5),
                 harhPos + (direction * 10)+new Vector3(0,0,-5));
-        }
-        //バックグラウンド作成
-        //TODO:汎用classに入れておく
-        private Texture2D MakeTex(int width, int height, Color col)
-        {
-            Color[] pix = new Color[width * height];
-            for (int i = 0; i < pix.Length; ++i)
-            {
-                pix[i] = col;
-            }
-            Texture2D result = new Texture2D(width, height);
-            result.SetPixels(pix);
-            result.Apply();
-            return result;
         }
     }
 }
