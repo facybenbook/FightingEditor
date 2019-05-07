@@ -33,19 +33,19 @@ public class PlusNodeEditor : StateNodeEditor
         example = null;
     }
 
-    protected override void OnGUI()
-    {
-        if (example && stateMachineGraphGUI != null)
-        {
-            stateMachineGraphGUI.BeginGraphGUI(example, new Rect(0, 0, example.position.width, example.position.height));
+    //protected override void OnGUI()
+    //{
+    //    if (example && stateMachineGraphGUI != null)
+    //    {
+    //        stateMachineGraphGUI.BeginGraphGUI(example, new Rect(0, 0, example.position.width, example.position.height));
 
-            // ノード描画
-            //base.OnGUI();
+    //        // ノード描画
+    //        //base.OnGUI();
 
-            stateMachineGraphGUI.EndGraphGUI();
-        }
+    //        stateMachineGraphGUI.EndGraphGUI();
+    //    }
 
-    }
+    //}
 
     GraphGUI GetEditor(Graph graph)
     {

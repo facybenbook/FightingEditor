@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SuperCU.FightingEngine;
+using SuperCU.Pattern;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -28,4 +29,20 @@ public class CharacterProperty : ScriptableObject
     private int id;
     [SerializeField]
     private int initHp;
+    //ステート
+    [SerializeField]
+    private List<StateString> states = new List<StateString>();
+
+    public int ID
+    {
+        get { return id; }
+    }
+    public int IniHp
+    {
+        get { return initHp; }
+    }
+    public List<StateString> States
+    {
+        get { return states; }
+    }
 }

@@ -5,17 +5,18 @@ using SuperCU.Pattern;
 
 public class StateNodeEditor : EditorWindow
 {
-    private Node root;
-    private GameObject o;
+    private Node root;//基底ノード
+    private GameObject o = null;//ステート管理オブジェクト
+    private TestState state;//オブジェクトのステート
+    private StateBase nowState = null;
     //TODO:DictionaryではなくIDで管理する
-    private Dictionary<string, StateString> stateDictionary = new Dictionary<string, StateString>();
     private Dictionary<string, Node> nodeDictionary = new Dictionary<string, Node>();
     [MenuItem("スーパーCU格ゲーエン人17号/Node Editor")]
     static void Open()
     {
-        EditorWindow.GetWindow<StateNodeEditor>();
+        StateNodeEditor stage = EditorWindow.GetWindow<StateNodeEditor>();
+        stage.autoRepaintOnSceneChange = true;
     }
-
     protected virtual void OnGUI()
     {
         o = EditorGUILayout.ObjectField(o, typeof(GameObject), true) as GameObject;
@@ -33,13 +34,25 @@ public class StateNodeEditor : EditorWindow
         {
             nodeDictionary[a.Key].Draw();
         }
+        //現在のステートの色を変える
+        if (nowState != state.stateProcessor.State)
+        {
+            if (state.stateProcessor.State != null)
+            {
+                if (nowState != null)
+                {
+                    nodeDictionary[nowState.getStateName()].color = Color.white;
+                }
+                nowState = state.stateProcessor.State;
+                nodeDictionary[nowState.getStateName()].color = Color.red;
+            }
+        }
         EndWindows();
-
     }
     //ノード入れ（最適化できてません）
     private void Init()
     {
-        TestState state = o.GetComponent<TestState>();
+        state = o.GetComponent<TestState>();
         int id = 0;
         foreach (StateString ss in state.states)
         {
@@ -48,7 +61,6 @@ public class StateNodeEditor : EditorWindow
             ss.stateJudges.Sort((a, b) => b.priority - a.priority);//優先度順にソート(高ければ高い、降順),いらない
         }
         root = nodeDictionary[state.states[0].getStateName()];//基底ノード
-        Vector2 x = new Vector2( 50,50);
         foreach (StateJudge judge in state.states[0].stateJudges)
         {
             if (nodeDictionary[judge.nextState] != null)
@@ -78,6 +90,7 @@ public class StateNodeEditor : EditorWindow
         public string name;
         public Rect window;
         public List<Node> childs = new List<Node>();
+        public Color color = Color.white;
 
         public Node(string na, Vector2 position,int d)
         {
@@ -88,6 +101,8 @@ public class StateNodeEditor : EditorWindow
 
         public void Draw()
         {
+            GUI.backgroundColor = color;
+
             this.window = GUI.Window(this.id, this.window, DrawNodeWindow, "Window" + this.id);
             foreach (var child in this.childs)
             {
@@ -112,12 +127,26 @@ public class StateNodeEditor : EditorWindow
             //色は適当
             Handles.color = Color.white;
             Handles.DrawLine(startPos, endPos);
-            Handles.color = Color.red;
+            Handles.color = Color.white;
             //三角形ポリゴン（矢印）作成
             Handles.DrawAAConvexPolygon(
-                harhPos +( new Vector3(-direction.y, direction.x, 0).normalized * 10) + new Vector3(0, 0, -5),
-                harhPos + (new Vector3(-direction.y, direction.x, 0).normalized * -10) + new Vector3(0, 0, -5),
+                harhPos +( new Vector3(-direction.y, direction.x, 0).normalized * 6) + new Vector3(0, 0, -5),
+                harhPos + (new Vector3(-direction.y, direction.x, 0).normalized * -6) + new Vector3(0, 0, -5),
                 harhPos + (direction * 10)+new Vector3(0,0,-5));
+        }
+        //バックグラウンド作成
+        //TODO:汎用classに入れておく
+        private Texture2D MakeTex(int width, int height, Color col)
+        {
+            Color[] pix = new Color[width * height];
+            for (int i = 0; i < pix.Length; ++i)
+            {
+                pix[i] = col;
+            }
+            Texture2D result = new Texture2D(width, height);
+            result.SetPixels(pix);
+            result.Apply();
+            return result;
         }
     }
 }

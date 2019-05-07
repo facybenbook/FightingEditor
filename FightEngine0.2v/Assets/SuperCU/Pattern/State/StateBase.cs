@@ -16,7 +16,7 @@ namespace SuperCU.Pattern
     public class StatePrpcessor
     {
         //ステート本体
-        private StateBase _State;
+        private StateBase _State = null;
         public StateBase State
         {
             set { _State = value; }
@@ -35,7 +35,7 @@ namespace SuperCU.Pattern
     {
         //デリゲート
         public delegate void executeState();
-        public string stringName;
+        public string stringName = null;
         public executeState execDelegate;
         public List<StateJudge> stateJudges = new List<StateJudge>();
 
