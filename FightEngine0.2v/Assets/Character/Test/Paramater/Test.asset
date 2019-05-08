@@ -15,7 +15,10 @@ MonoBehaviour:
   id: 0
   initHp: 0
   states:
-  - stringName: 
-    stateJudges: []
+  - stringName: kurama
+    stateJudges:
+    - nextState: 
+      key: 
+      priority: 0
   - stringName: 
     stateJudges: []

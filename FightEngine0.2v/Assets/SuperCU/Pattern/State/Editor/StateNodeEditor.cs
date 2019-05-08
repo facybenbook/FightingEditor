@@ -7,7 +7,7 @@ public class StateNodeEditor : EditorWindow
 {
     private Node root;//基底ノード
     private GameObject o = null;//ステート管理オブジェクト
-    private TestState state;//オブジェクトのステート
+    private StateMachineMonoBehaiviour state;//オブジェクトのステート
     private StateBase nowState = null;
     //TODO:DictionaryではなくIDで管理する
     private Dictionary<string, Node> nodeDictionary = new Dictionary<string, Node>();
@@ -52,7 +52,7 @@ public class StateNodeEditor : EditorWindow
     //ノード初期化　TODO:最適化
     private void Init()
     {
-        state = o.GetComponent<TestState>();
+        state = o.GetComponent<StateMachineMonoBehaiviour>();
         int id = 0;
         foreach (StateString ss in state.states)
         {

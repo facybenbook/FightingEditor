@@ -5,7 +5,7 @@ using SuperCU.Pattern;
 using SuperCU.Generic;
 using SuperCU.FightingEngine;
 
-public class TestState : MonoBehaviour,IEventable
+public class StateMachineMonoBehaiviour : MonoBehaviour, IEventable
 {
     //変更前のステート名
     private string _beforeStateName;
@@ -19,19 +19,19 @@ public class TestState : MonoBehaviour,IEventable
     //TODO:DictionaryではなくIDで管理する
     private Dictionary<string, StateString> stateDictionary = new Dictionary<string, StateString>();
 
-    private void Start()
+    protected virtual void Start()
     {
         GameManager.Instance.AddUpdate(this);//アップデートリストに追加
         //0がデフォルト
         stateProcessor.State = states[0];
-        foreach(StateString ss in states)
+        foreach (StateString ss in states)
         {
             ss.execDelegate = NomalState;
             stateDictionary.Add(ss.getStateName(), ss);//辞書追加
             ss.stateJudges.Sort((a, b) => b.priority - a.priority);//優先度順にソート(高ければ高い、降順)
         }
     }
-    public void UpdateGame()
+    public virtual void UpdateGame()
     {
         //TODO:処理が出来てない
         stateProcessor.Execute();
@@ -53,7 +53,7 @@ public class TestState : MonoBehaviour,IEventable
         //優先度順にジャッジ
         foreach (StateJudge judge in stateProcessor.State.stateJudges)
         {
-            if(GetKeyboardValue.DownKeyCheck() == judge.key)
+            if (GetKeyboardValue.DownKeyCheck() == judge.key)
             {
                 stateProcessor.State = stateDictionary[judge.nextState];
             }

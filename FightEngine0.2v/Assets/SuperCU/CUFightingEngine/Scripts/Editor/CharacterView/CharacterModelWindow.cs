@@ -14,6 +14,7 @@ using System.Reflection;
 
 namespace SuperCU.FightingEngine
 {
+    [System.Serializable]
     public partial class CharacterModelWindow : EditorWindow
     {
         public static CharacterModelWindow window; //ウィンドウ

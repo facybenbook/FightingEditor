@@ -16,6 +16,18 @@ namespace SuperCU.Generic
     {
         public static string DownKeyCheck()
         {
+            if (Input.anyKeyDown)
+            {
+                foreach (var code in Input.inputString)
+                {
+                    Debug.Log(code);
+                    return code.ToString();
+                }
+            }
+            return " ";
+        }
+        public static string KeyCheck()
+        {
             if (Input.anyKey)
             {
                 foreach (var code in Input.inputString)
@@ -26,5 +38,6 @@ namespace SuperCU.Generic
             }
             return " ";
         }
+
     }
 }
