@@ -2,9 +2,17 @@
 using UnityEditor;
 using System.Collections.Generic;
 using SuperCU.Pattern;
+using System.Reflection;
+using System;
 
 public class StateNodeEditor : EditorWindow
 {
+    enum StateMode
+    {
+        Nomal,
+        Animation,
+    }
+    private StateMode stateMode = StateMode.Nomal;
     private Node root;//基底ノード
     private GameObject o = null;//ステート管理オブジェクト
     private StateMachineMonoBehaiviour stateClass;//オブジェクトのステート
@@ -17,6 +25,7 @@ public class StateNodeEditor : EditorWindow
     {
         StateNodeEditor stage = EditorWindow.GetWindow<StateNodeEditor>();
         stage.autoRepaintOnSceneChange = true;
+        stage.wantsMouseMove = true;
     }
     protected virtual void OnGUI()
     {
@@ -47,18 +56,27 @@ public class StateNodeEditor : EditorWindow
                 nowState = stateClass.stateProcessor.State;
                 nodeDictionary[nowState.getStateName()].color = Color.red;
             }
+            else
+            {
+                nodeDictionary[nowState.getStateName()].color = Color.white;
+            }
         }
         EndWindows();
+
     }
     //ノード初期化　TODO:最適化
     private void Init()
     {
+        //playModeStateChangedイベントにメソッド登録
+        EditorApplication.playModeStateChanged += OnChangedPlayMode;
         //ステートがアニメーションならば
         if (o.GetComponent<AnimationState>() != null)
         {
             var cla = o.GetComponent<AnimationState>();
             states = cla.characterProperty.States;
+            stateMode = StateMode.Animation;
         }
+        //ノーマル（ＵＩとか）
         else
         {
             var cla = o.GetComponent<StateMachineMonoBehaiviour>();
@@ -68,7 +86,7 @@ public class StateNodeEditor : EditorWindow
         int id = 0;
         foreach (StateString ss in states)
         {
-            nodeDictionary.Add(ss.getStateName(), new Node(ss.getStateName(), new Vector2(200, 200),id));
+            nodeDictionary.Add(ss.getStateName(), new Node(ss.getStateName(), new Vector2(200, 200), id, ss));
             id++;//ウィンドウID
         }
         root = nodeDictionary[states[0].getStateName()];//基底ノード
@@ -81,7 +99,7 @@ public class StateNodeEditor : EditorWindow
                 root.childs.Add(nodeDictionary[judge.nextState]);
             }
         }
-        for (int i = 1; i<states.Count; i++)
+        for (int i = 1; i < states.Count; i++)
         {
             Node nowNode = nodeDictionary[states[i].getStateName()];
             if (states[i].stateJudges.Count > 0)
@@ -96,28 +114,48 @@ public class StateNodeEditor : EditorWindow
             }
         }
     }
+    //プレイモードが変更された
+    void OnChangedPlayMode(PlayModeStateChange isNowPlayng)
+    {
+        //停止時にノードの色を戻す
+        if (isNowPlayng == PlayModeStateChange.ExitingPlayMode)
+        {
+            nodeDictionary[nowState.getStateName()].color = Color.white;
+        }
+    }
+
     //ベースとなるノードクラス
     public class Node
     {
+        public static int nowId;
+        enum Mode
+        {
+            FUNC,//ステート移行時に呼び出されるメソッド
+        }
+        private Mode mode;
         public int id;
         public string name;
         public Rect window;
         public List<Node> childs = new List<Node>();
         public Color color = Color.white;
+        public StateString state;//どのステートか
+        MonoScript mono;//現在のスクリプト
+        int stringNumber;//現在の番号
+
         //初期化
-        public Node(string na, Vector2 position,int d)
+        public Node(string na, Vector2 position,int d, StateString ss)
         {
+            state = ss;
             id = d;
             name = na;
-            window = new Rect(position, new Vector2(100, 50));
+            window = new Rect(position, new Vector2(200, 50));
         }
         //描画
         public void Draw()
         {
             //色変え
             GUI.backgroundColor = color;
-
-            window = GUI.Window(id, window, DrawNodeWindow, "Window" + id);
+            window = GUI.Window(id, window, DrawNodeWindow, name+id);
             foreach (var child in childs)
             {
                 DrawNodeLine(this.window, child.window); 
@@ -126,8 +164,75 @@ public class StateNodeEditor : EditorWindow
         //GUIウィンドウ用関数
         void DrawNodeWindow(int id)
         {
-            GUI.DragWindow();
-            GUI.Label(new Rect(30, 22, 100, 100), name, EditorStyles.label);
+
+            //どのウィンドウがアクティブか
+            if (Event.current.button == 0 && Event.current.type == EventType.MouseDown)
+            {
+                nowId = id;
+            }
+            mode = (Mode)EditorGUILayout.EnumPopup(mode);
+            GUI.DragWindow(new Rect(0, 0, 200, 20));
+
+            //中身の入力
+            if (nowId == id)
+            {
+                //ステート移行時に呼び出されるメソッド
+                if (mode == Mode.FUNC)
+                {
+                    window.height = 115;//windowの高さ変更
+                    //ラベル
+                    EditorGUILayout.LabelField("State移行時に呼び出すもの");
+                    EditorGUILayout.LabelField("引数のないpublicメソッドのみ");
+                    state.playScript = EditorGUILayout.ObjectField(state.playScript, typeof(MonoScript), true) as MonoScript;//スクリプトアタッチ
+                    List<MethodInfo> methods;
+                    if (state.playScript != null)
+                    {
+                        //スクリプトが入れ替わった時だけ
+                        if (mono != state.playScript)
+                        {
+                            mono = state.playScript;
+                            var atr = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.DeclaredOnly ;
+                            Type type = state.playScript.GetClass();
+                            /*メソッドの初期化*/
+                            methods = new List<MethodInfo>();
+                            methods.AddRange(type.GetMethods(atr));
+                            string[] options = { };
+                            int i = 0;
+                            //引数のないメソッドだけ入れる
+                            for (int j = 0; j < methods.Count; j++)
+                            {
+                                if (methods[j].GetParameters().Length > 0)
+                                {
+                                    methods.Remove(methods[i]);
+                                }
+                            }
+                            if (methods.Count > 0)
+                            {
+                                foreach (MethodInfo method in methods)
+                                {
+                                    Array.Resize(ref options, options.Length + 1);
+                                    options[i] = method.Name;
+                                    i++;
+                                }
+                                state.stringNumber = EditorGUILayout.Popup(state.stringNumber, options);
+                                if (stringNumber != state.stringNumber)
+                                {
+                                    //タイプからインスタンスを作成（CreateDelegateは第二引数にインスタンスを渡すため）
+                                    var args = new object[] { };
+                                    var bar = Activator.CreateInstance(type, args);
+                                    //デリゲートを作成し、変数に入れる
+                                    state.playDelegate = (StateBase.playState)methods[state.stringNumber].CreateDelegate(typeof(StateBase.playState), bar);
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                window.height = 50;
+            }
         }
         static void DrawNodeLine(Rect start, Rect end)
         {

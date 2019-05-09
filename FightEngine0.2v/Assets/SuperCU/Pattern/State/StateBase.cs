@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using SuperCU.Generic;
 
+using UnityEditor;
+
+      
 namespace SuperCU.Pattern
 {
     //リストで使用
@@ -42,11 +45,17 @@ namespace SuperCU.Pattern
     {
         //デリゲート
         public delegate void executeState();
+        public delegate void playState();
         public string stringName = null;
 
-
         public executeState execDelegate;
-        public UnityEvent playEvent = new UnityEvent();//ステートに移行されたときにプレイするイベント
+
+        //if NodeEditorにのみ使用
+#if UNITY_EDITOR
+        public MonoScript playScript;//イベントのスクリプト
+        public int stringNumber;
+#endif
+        public playState playDelegate;//ステートに移行されたときにプレイするイベント
         public List<StateJudge> stateJudges = new List<StateJudge>();
 
         //実行処理
@@ -59,9 +68,9 @@ namespace SuperCU.Pattern
         }
         public virtual void Play()
         {
-            if(playEvent != null)
+            if(playDelegate != null)
             {
-                playEvent.Invoke();
+                playDelegate.Invoke();
             }
         }
         //ステート名を取得するメソッド
