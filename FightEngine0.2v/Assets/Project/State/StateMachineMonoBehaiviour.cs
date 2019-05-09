@@ -4,6 +4,7 @@ using UnityEngine;
 using SuperCU.Pattern;
 using SuperCU.Generic;
 using SuperCU.FightingEngine;
+using UnityEditor;
 
 public class StateMachineMonoBehaiviour : MonoBehaviour, IEventable
 {
@@ -19,6 +20,9 @@ public class StateMachineMonoBehaiviour : MonoBehaviour, IEventable
     //TODO:DictionaryではなくIDで管理する
     private Dictionary<string, StateString> stateDictionary = new Dictionary<string, StateString>();
 
+    //次のステートに移行できるかどうか
+    protected bool stateFlag = false;
+
     protected virtual void Start()
     {
         GameManager.Instance.AddUpdate(this);//アップデートリストに追加
@@ -33,6 +37,7 @@ public class StateMachineMonoBehaiviour : MonoBehaviour, IEventable
     }
     public virtual void UpdateGame()
     {
+        //TODO:毎回回さない
         //TODO:処理が出来てない
         stateProcessor.Execute();
         //ステートの値が変更されたら実行処理を行う
@@ -42,28 +47,40 @@ public class StateMachineMonoBehaiviour : MonoBehaviour, IEventable
         }
         if (stateProcessor.State.getStateName() != _beforeStateName)
         {
-            Debug.Log(" Now State:" + stateProcessor.State.getStateName());
             _beforeStateName = stateProcessor.State.getStateName();
-            stateProcessor.Execute();
+            stateProcessor.Play();
         }
     }
-
+    //判定
     public void NomalState()
     {
-        //優先度順にジャッジ
+        //優先度順にジャッジ(ソートは別)
         foreach (StateJudge judge in stateProcessor.State.stateJudges)
         {
-            if (GetKeyboardValue.DownKeyCheck() == judge.key)
+            CheckNextState(judge);
+            if (stateFlag)
             {
                 stateProcessor.State = stateDictionary[judge.nextState];
             }
         }
     }
+    public void CheckNextState(StateJudge sj)
+    {
+        switch(sj.inputMode)
+        {
+            case InputMode.GetKeyDown:
+                stateFlag = GetKeyboardValue.DownKeyCheck() == sj.key;
+                break;
+            case InputMode.GetKey:
+                stateFlag = GetKeyboardValue.KeyCheck() == sj.key;
+                break;
+        }
+    }
 
-    public void LateUpdateGame()
+    public virtual void LateUpdateGame()
     {
     }
-    public void FixedUpdateGame()
+    public virtual void FixedUpdateGame()
     {
     }
 }

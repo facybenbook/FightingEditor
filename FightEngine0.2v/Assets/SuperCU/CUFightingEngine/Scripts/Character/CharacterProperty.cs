@@ -32,7 +32,7 @@ public class CharacterProperty : ScriptableObject
     //ステート
     [SerializeField]
     private List<StateString> states = new List<StateString>();
-
+    
     public int ID
     {
         get { return id; }

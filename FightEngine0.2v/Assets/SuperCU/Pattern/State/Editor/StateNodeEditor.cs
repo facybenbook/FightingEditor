@@ -7,8 +7,9 @@ public class StateNodeEditor : EditorWindow
 {
     private Node root;//基底ノード
     private GameObject o = null;//ステート管理オブジェクト
-    private StateMachineMonoBehaiviour state;//オブジェクトのステート
+    private StateMachineMonoBehaiviour stateClass;//オブジェクトのステート
     private StateBase nowState = null;
+    private List<StateString> states = new List<StateString>();
     //TODO:DictionaryではなくIDで管理する
     private Dictionary<string, Node> nodeDictionary = new Dictionary<string, Node>();
     [MenuItem("スーパーCU格ゲーエン人17号/Node Editor")]
@@ -35,15 +36,15 @@ public class StateNodeEditor : EditorWindow
             nodeDictionary[a.Key].Draw();
         }
         //現在のステートの色を変える
-        if (nowState != state.stateProcessor.State)
+        if (nowState != stateClass.stateProcessor.State)
         {
-            if (state.stateProcessor.State != null)
+            if (stateClass.stateProcessor.State != null)
             {
                 if (nowState != null)
                 {
                     nodeDictionary[nowState.getStateName()].color = Color.white;
                 }
-                nowState = state.stateProcessor.State;
+                nowState = stateClass.stateProcessor.State;
                 nodeDictionary[nowState.getStateName()].color = Color.red;
             }
         }
@@ -52,29 +53,40 @@ public class StateNodeEditor : EditorWindow
     //ノード初期化　TODO:最適化
     private void Init()
     {
-        state = o.GetComponent<StateMachineMonoBehaiviour>();
+        //ステートがアニメーションならば
+        if (o.GetComponent<AnimationState>() != null)
+        {
+            var cla = o.GetComponent<AnimationState>();
+            states = cla.characterProperty.States;
+        }
+        else
+        {
+            var cla = o.GetComponent<StateMachineMonoBehaiviour>();
+            states = cla.states;
+        }
+        stateClass = o.GetComponent<StateMachineMonoBehaiviour>();
         int id = 0;
-        foreach (StateString ss in state.states)
+        foreach (StateString ss in states)
         {
             nodeDictionary.Add(ss.getStateName(), new Node(ss.getStateName(), new Vector2(200, 200),id));
             id++;//ウィンドウID
         }
-        root = nodeDictionary[state.states[0].getStateName()];//基底ノード
+        root = nodeDictionary[states[0].getStateName()];//基底ノード
 
         //ステートを見て関係を格納
-        foreach (StateJudge judge in state.states[0].stateJudges)
+        foreach (StateJudge judge in states[0].stateJudges)
         {
             if (nodeDictionary[judge.nextState] != null)
             {
                 root.childs.Add(nodeDictionary[judge.nextState]);
             }
         }
-        for (int i = 1; i<state.states.Count; i++)
+        for (int i = 1; i<states.Count; i++)
         {
-            Node nowNode = nodeDictionary[state.states[i].getStateName()];
-            if (state.states[i].stateJudges.Count > 0)
+            Node nowNode = nodeDictionary[states[i].getStateName()];
+            if (states[i].stateJudges.Count > 0)
             {
-                foreach (StateJudge judge in state.states[i].stateJudges)
+                foreach (StateJudge judge in states[i].stateJudges)
                 {
                     if (nodeDictionary[judge.nextState] != null)
                     {

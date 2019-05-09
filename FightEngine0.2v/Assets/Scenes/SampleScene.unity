@@ -292,7 +292,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f1efa2a586e3746a7414d44c358549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: []
+  states:
+  - stringName: zzz
+    stateJudges:
+    - inputMode: 0
+      nextState: zaq
+      key: 
+      priority: 0
+  - stringName: zaq
+    stateJudges: []
+  - stringName: aws
+    stateJudges: []
 --- !u!4 &1820165260
 Transform:
   m_ObjectHideFlags: 0

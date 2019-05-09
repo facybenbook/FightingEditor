@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using SuperCU.Generic;
 
 namespace SuperCU.Pattern
 {
@@ -8,6 +10,7 @@ namespace SuperCU.Pattern
     [System.Serializable]
     public struct StateJudge
     {
+        public InputMode inputMode;
         public string nextState;//次に入れ替わることの出来るステート
         public string key;//入力キー
         public int priority;//優先度
@@ -28,6 +31,10 @@ namespace SuperCU.Pattern
         {
             State.Execute();
         }
+        public void Play()
+        {
+            State.Play();
+        }
     }
     [System.Serializable]
     //ステートのクラス
@@ -36,7 +43,10 @@ namespace SuperCU.Pattern
         //デリゲート
         public delegate void executeState();
         public string stringName = null;
+
+
         public executeState execDelegate;
+        public UnityEvent playEvent = new UnityEvent();//ステートに移行されたときにプレイするイベント
         public List<StateJudge> stateJudges = new List<StateJudge>();
 
         //実行処理
@@ -45,6 +55,13 @@ namespace SuperCU.Pattern
             if (execDelegate != null)
             {
                 execDelegate();
+            }
+        }
+        public virtual void Play()
+        {
+            if(playEvent != null)
+            {
+                playEvent.Invoke();
             }
         }
         //ステート名を取得するメソッド
