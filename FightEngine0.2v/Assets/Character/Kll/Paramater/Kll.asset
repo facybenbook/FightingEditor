@@ -15,5 +15,47 @@ MonoBehaviour:
   id: 0
   initHp: 0
   states:
-  - stringName: 
+  - stringName: atu
+    stringNumber: 1
+    playDelegate:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3887373482105779469, guid: a3a0d3493b5b4dd458064f60cde7936b,
+            type: 3}
+          m_MethodName: alter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    stateJudges:
+    - inputMode: 0
+      nextState: min
+      key: a
+      priority: 0
+  - stringName: min
+    stringNumber: 1
+    playDelegate:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3887373482105779469, guid: a3a0d3493b5b4dd458064f60cde7936b,
+            type: 3}
+          m_MethodName: alter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     stateJudges: []

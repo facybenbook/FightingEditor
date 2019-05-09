@@ -7,6 +7,7 @@ using SuperCU.Pattern;
 
 public class GameManager : SingletonMono<GameManager>
 {
+    public int a;
     [SerializeField]
     private List<IEventable> updateList = new List<IEventable>();
     protected override void Awake()
@@ -29,5 +30,9 @@ public class GameManager : SingletonMono<GameManager>
         {
             temp.UpdateGame();
         }
+    }
+    public void faef()
+    {
+        a = 40;
     }
 }

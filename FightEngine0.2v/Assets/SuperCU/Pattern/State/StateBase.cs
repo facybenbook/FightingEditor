@@ -51,11 +51,9 @@ namespace SuperCU.Pattern
         public executeState execDelegate;
 
         //if NodeEditorにのみ使用
-#if UNITY_EDITOR
-        public MonoScript playScript;//イベントのスクリプト
         public int stringNumber;
-#endif
-        public playState playDelegate;//ステートに移行されたときにプレイするイベント
+        public UnityEvent playDelegate;
+        //public playState playDelegate;//ステートに移行されたときにプレイするイベント
         public List<StateJudge> stateJudges = new List<StateJudge>();
 
         //実行処理
@@ -70,6 +68,7 @@ namespace SuperCU.Pattern
         {
             if(playDelegate != null)
             {
+                Debug.Log("再生されたよ");
                 playDelegate.Invoke();
             }
         }

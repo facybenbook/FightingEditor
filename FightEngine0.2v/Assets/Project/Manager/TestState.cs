@@ -12,6 +12,7 @@ public class TestState : MonoBehaviour
     public void alter()
     {
 
+        GameManager.Instance.a = 5;
     }
     // Update is called once per frame
     void Update()

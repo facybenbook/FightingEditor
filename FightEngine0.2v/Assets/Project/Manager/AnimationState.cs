@@ -21,6 +21,7 @@ public class AnimationState : StateMachineMonoBehaiviour
     }
     private void InitState()
     {
+        print(characterProperty.States[0].playDelegate);
         if (characterProperty != null)
         {
             states = characterProperty.States;
