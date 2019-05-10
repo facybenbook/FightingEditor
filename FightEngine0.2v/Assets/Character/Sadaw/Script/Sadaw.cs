@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using SuperCU.FightingEngine;
 
-public class Kll : CharacterBase
+public class Sadaw : CharacterBase
 {
-    public UnityEvent unity;
     void Start()
     {
         GameManager.Instance.AddUpdate(this);
@@ -15,9 +13,5 @@ public class Kll : CharacterBase
     {
         base.UpdateGame();
         //ここに処理
-    }
-    public void aaaa()
-    {
-
     }
 }

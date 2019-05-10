@@ -24,6 +24,7 @@ namespace SuperCU.FightingEngine
         private string charaName; //名前(半角英数)
 
         private GameObject tempObject = null;
+		private CharacterProperty propertyBuffer;
 
         //ウィンドウ表示
         [MenuItem("スーパーCU格ゲーエン人17号/キャラ作成")]
@@ -44,7 +45,9 @@ namespace SuperCU.FightingEngine
             {
                 if (SubType.GetType(charaName)!=null)
                 {
+					tempObject.AddComponent(typeof(AnimationState));
                     tempObject.AddComponent(SubType.GetType(charaName));
+					tempObject.GetComponent<AnimationState>().characterProperty = propertyBuffer;
                     //プレハブのセーブ
                     PrefabUtility.SaveAsPrefabAsset(tempObject, "Assets/Character/" + charaName + "/" + charaName + ".prefab");
                     tempObject = null;
@@ -71,7 +74,7 @@ namespace SuperCU.FightingEngine
                 CharacterView.Open();//CharacterView
                 Scene scene = EditorSceneManager.OpenScene(ConstantsEditor.CHARACTER_VIEW_SCENE_PATH, OpenSceneMode.Additive);//CharacterView用のシーンをロード
                 modelObj = CreatePrefab(scene);//プレハブ、オブジェクト作成
-                CreateParam();//パラメータ作成
+                propertyBuffer = CreateParam();//パラメータ作成
                 SceneManager.SetActiveScene(scene);//アクティブシーンの変更
             }
         }

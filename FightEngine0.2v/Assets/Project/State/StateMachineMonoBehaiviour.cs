@@ -48,7 +48,6 @@ public class StateMachineMonoBehaiviour : MonoBehaviour, IEventable
         if (stateProcessor.State.getStateName() != _beforeStateName)
         {
             _beforeStateName = stateProcessor.State.getStateName();
-            print("ここはいく");
             stateProcessor.Play();
         }
     }

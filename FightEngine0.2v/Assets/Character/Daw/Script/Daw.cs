@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SuperCU.FightingEngine;
 
-public class Test : CharacterBase
+public class Daw : CharacterBase
 {
     void Start()
     {

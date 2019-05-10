@@ -47,7 +47,7 @@ namespace SuperCU.Pattern
         public delegate void executeState();
         public delegate void playState();
         public string stringName = null;
-
+		public Vector2 nodePosition = new Vector2(200,50);//ノードの場所
         public executeState execDelegate;
 
         //if NodeEditorにのみ使用

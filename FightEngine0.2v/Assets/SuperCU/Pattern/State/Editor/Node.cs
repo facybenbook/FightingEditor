@@ -21,9 +21,10 @@ public partial class Node
     public Color color = Color.white;//このノードのカラー
     public StateString state;//このノードのステート情報
     public GameObject gameObject;//このノードに使用するスクリプトのアタッチされているゲームオブジェクト
+	private Vector2 dragMouse;
 
-    //初期化
-    public Node(string na, Vector2 position, int d, StateString ss, GameObject game)
+	//初期化
+	public Node(string na, Vector2 position, int d, StateString ss, GameObject game)
     {
         gameObject = game;
         state = ss;
@@ -34,8 +35,8 @@ public partial class Node
     //描画
     public void Draw()
     {
-        //色変え
-        GUI.backgroundColor = color;
+		//色変え
+		GUI.backgroundColor = color;
         //ノードウィンドウ作成
         window = GUI.Window(id, window, DrawNodeWindow, name + id);
         //ノード同士をつなぐ線
@@ -43,9 +44,11 @@ public partial class Node
         {
             DrawNodeLine(this.window, child.window);
         }
-    }
-    //線の描画
-    static void DrawNodeLine(Rect start, Rect end)
+		state.nodePosition = window.position;
+		GUILayout.Space(500000);
+	}
+	//線の描画
+	static void DrawNodeLine(Rect start, Rect end)
     {
         Vector3 startPos = new Vector3(start.x + start.width / 2, start.y + start.height / 2, 0);
         Vector3 endPos = new Vector3(end.x + end.width / 2, end.y + end.height / 2, 0);

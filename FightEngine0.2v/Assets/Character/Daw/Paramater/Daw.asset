@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f103bf9f6c20a041b008638a821a85f, type: 3}
-  m_Name: Test
+  m_Name: Daw
   m_EditorClassIdentifier: 
   id: 0
   initHp: 0
   states:
-  - stringName: kurama
-    stateJudges:
-    - nextState: 
-      key: 
-      priority: 0
-  - stringName: 
+  - stringName: ss
+    nodePosition: {x: 282, y: 177}
+    stringNumber: 0
+    playDelegate:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
     stateJudges: []

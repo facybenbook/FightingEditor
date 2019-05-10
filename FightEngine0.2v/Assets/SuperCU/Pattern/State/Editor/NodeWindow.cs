@@ -14,12 +14,11 @@ public partial class Node
     private string[] nowOptions; //現在のメソッド名集
     private int nowStringNumber; //現在の番号
 
-
     //GUIウィンドウ用関数
     void DrawNodeWindow(int id)
     {
-        //自身のウィンドウをアクティブにする
-        if (Event.current.button == 0 && Event.current.type == EventType.MouseDown)
+		//自身のウィンドウをアクティブにする
+		if (Event.current.button == 0 && Event.current.type == EventType.MouseDown)
         {
             nowActivId = id;
         }
@@ -27,8 +26,8 @@ public partial class Node
         mode = (Mode)EditorGUILayout.EnumPopup(mode);
         //ドラッグ可能
         GUI.DragWindow(new Rect(0, 0, 200, 20));
-        //入力
-        if (nowActivId == id)
+		//入力
+		if (nowActivId == id)
         {
             switch (mode)
             {
@@ -71,9 +70,9 @@ public partial class Node
                         }
                         //使えるメソッドがあれば名前取得
                         string[] options = { };
-                        if (methods.Count > 0)
+						int count = 0;
+						if (methods.Count > 0)
                         {
-                            int count = 0;
                             foreach (MethodInfo method in methods)
                             {
                                 Array.Resize(ref options, options.Length + 1);
@@ -81,7 +80,10 @@ public partial class Node
                                 count++;
                             }
                         }
-                        nowMethods = methods;
+						Array.Resize(ref options, options.Length + 1);
+						//最後にNoneを追加
+						options[count] = "None";
+						nowMethods = methods;
                         nowOptions = options;
                         compornentsFlag = false;//一応
                     }
@@ -92,18 +94,31 @@ public partial class Node
                     {
                         nowStringNumber = state.stringNumber;
 
-                        ////タイプからインスタンスを作成する方法
-                        //var args = new object[] { };
-                        //var bar = Activator.CreateInstance(typeClone, args);
+						////タイプからインスタンスを作成する方法
+						//var args = new object[] { };
+						//var bar = Activator.CreateInstance(typeClone, args);
 
-                        //CreateDelegateは第二引数にインスタンス
-                        //デリゲートを作成し、変数に入れる
-                        Type t = nowMethods[state.stringNumber].DeclaringType;
-                        for (int i = 0; i < state.playDelegate.GetPersistentEventCount() + 1; i++)
-                        {
-                            UnityEventTools.RemovePersistentListener(state.playDelegate, i);
-                        }
-                        UnityEventTools.AddVoidPersistentListener(state.playDelegate, (UnityAction)nowMethods[state.stringNumber].CreateDelegate(typeof(UnityAction), gameObject.transform.GetComponent(t)));
+						//CreateDelegateは第二引数にインスタンス
+						//デリゲートを作成し、変数に入れる
+						if (state.stringNumber >= nowMethods.Count)
+						{
+							for (int i = 0; i < state.playDelegate.GetPersistentEventCount() + 1; i++)
+							{
+								UnityEventTools.RemovePersistentListener(state.playDelegate, i);
+							}
+							break;
+						}
+						Type t = nowMethods[state.stringNumber].DeclaringType;
+						if (state.playDelegate.GetPersistentEventCount() != 0)
+						{
+
+							for (int i = 0; i < state.playDelegate.GetPersistentEventCount() + 1; i++)
+							{
+								UnityEventTools.RemovePersistentListener(state.playDelegate, i);
+							}
+						}
+						UnityEventTools.AddVoidPersistentListener(state.playDelegate, (UnityAction)nowMethods[state.stringNumber].CreateDelegate(typeof(UnityAction), gameObject.transform.GetComponent(t)));
+						
                     }
                     break;
             }
